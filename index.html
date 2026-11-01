@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plate Diary</title>
+  <meta name="description" content="Designing a food photo diary app: problem, users, features, flow, style guide and a working prototype.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">🍽️ Plate Diary</a>
+      <nav aria-label="Sections">
+        <a href="#problem">Problem</a>
+        <a href="#users">Users</a>
+        <a href="#features">Features</a>
+        <a href="#flow">Flow</a>
+        <a href="#style">Style</a>
+        <a href="#prototype" class="nav-cta">Try it</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div>
+          <p class="eyebrow">App design concept</p>
+          <h1>Remember every meal, one photo at a time.</h1>
+          <p class="lede">Plate Diary is a food journal that starts with a photo. Snap your plate, add a few words, and your meals become a visual diary you'll actually keep.</p>
+          <a class="btn" href="#prototype">Try the prototype</a>
+        </div>
+        <div class="hero-plates" aria-hidden="true">
+          <span style="--h: 18">🥐</span>
+          <span style="--h: 95">🥗</span>
+          <span style="--h: 8">🍜</span>
+          <span style="--h: 40">🍰</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem" class="section">
+      <div class="wrap narrow">
+        <p class="eyebrow">01 · The problem</p>
+        <h2>Food journals are tedious. Photos are scattered.</h2>
+        <p>Written food logs ask for too much: portions, ingredients, times. Most people give up within a week. Meanwhile, they already photograph their food, but those photos get buried between screenshots and receipts in the camera roll.</p>
+        <p><strong>Design goal:</strong> make logging a meal take under ten seconds, and make looking back feel rewarding instead of clinical.</p>
+      </div>
+    </section>
+
+    <section id="users" class="section alt">
+      <div class="wrap">
+        <p class="eyebrow">02 · Who it's for</p>
+        <h2>Three people we designed around</h2>
+        <div class="grid three">
+          <article class="card persona">
+            <div class="avatar" aria-hidden="true">👩‍🍳</div>
+            <h3>Maya, home cook</h3>
+            <p><span class="label">Goal</span> Keep track of recipes she's tried and how they turned out.</p>
+            <p><span class="label">Pain</span> Forgets which version of a dish worked best.</p>
+          </article>
+          <article class="card persona">
+            <div class="avatar" aria-hidden="true">🏃</div>
+            <h3>Leo, health tracker</h3>
+            <p><span class="label">Goal</span> Notice eating patterns without counting calories.</p>
+            <p><span class="label">Pain</span> Nutrition apps feel like homework.</p>
+          </article>
+          <article class="card persona">
+            <div class="avatar" aria-hidden="true">✈️</div>
+            <h3>Priya, foodie traveler</h3>
+            <p><span class="label">Goal</span> Remember the best meals from every trip.</p>
+            <p><span class="label">Pain</span> Can't recall where that great noodle bowl was.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="wrap">
+        <p class="eyebrow">03 · Key features</p>
+        <h2>Small, focused, fast</h2>
+        <div class="grid three">
+          <article class="card feature"><span class="icon" aria-hidden="true">📸</span><h3>Snap &amp; caption</h3><p>One photo and one line of text. Everything else is optional.</p></article>
+          <article class="card feature"><span class="icon" aria-hidden="true">🏷️</span><h3>Meal tags</h3><p>Breakfast, lunch, dinner or snack, picked with a single tap.</p></article>
+          <article class="card feature"><span class="icon" aria-hidden="true">⭐</span><h3>Quick rating</h3><p>Five stars to remember how much you loved it.</p></article>
+          <article class="card feature"><span class="icon" aria-hidden="true">📅</span><h3>Calendar view</h3><p>See your month as a grid of plates and spot patterns at a glance.</p></article>
+          <article class="card feature"><span class="icon" aria-hidden="true">🔎</span><h3>Filter by tag</h3><p>Jump straight to every dinner, or every snack, in one tap.</p></article>
+          <article class="card feature"><span class="icon" aria-hidden="true">🔒</span><h3>Private by default</h3><p>Your diary stays on your device. No feed, no followers, no pressure.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow" class="section alt">
+      <div class="wrap">
+        <p class="eyebrow">04 · User flow</p>
+        <h2>From plate to diary in five steps</h2>
+        <ol class="flow">
+          <li><span class="step">1</span>Open the app</li>
+          <li><span class="step">2</span>Snap or upload a photo</li>
+          <li><span class="step">3</span>Add a caption &amp; tag</li>
+          <li><span class="step">4</span>Save</li>
+          <li><span class="step">5</span>Browse feed or calendar</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="style" class="section">
+      <div class="wrap">
+        <p class="eyebrow">05 · Style guide</p>
+        <h2>Warm, like a kitchen table</h2>
+        <div class="style-grid">
+          <div>
+            <h3>Color</h3>
+            <ul class="swatches">
+              <li><span class="swatch" style="background: #fbf6ee"></span>Cream<code>#FBF6EE</code></li>
+              <li><span class="swatch" style="background: #2b2420"></span>Espresso<code>#2B2420</code></li>
+              <li><span class="swatch" style="background: #d9482f"></span>Tomato<code>#D9482F</code></li>
+              <li><span class="swatch" style="background: #6b7a3a"></span>Olive<code>#6B7A3A</code></li>
+              <li><span class="swatch" style="background: #f2c14e"></span>Butter<code>#F2C14E</code></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Type</h3>
+            <p class="type-sample serif">Fraunces for headings</p>
+            <p class="type-sample">Inter for body text and interface labels.</p>
+          </div>
+          <div>
+            <h3>Components</h3>
+            <div class="component-row">
+              <button class="btn" type="button">Save meal</button>
+              <button class="btn ghost" type="button">Cancel</button>
+            </div>
+            <div class="component-row">
+              <span class="tag">Breakfast</span>
+              <span class="tag">Lunch</span>
+              <span class="tag">Dinner</span>
+              <span class="tag">Snack</span>
+            </div>
+            <div class="component-row stars-demo" aria-label="4 out of 5 stars">★★★★<span class="dim">★</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prototype" class="section alt">
+      <div class="wrap proto-layout">
+        <div>
+          <p class="eyebrow">06 · Prototype</p>
+          <h2>Try it yourself</h2>
+          <p>This is a working version of the app. Add a meal with a photo from your device, filter the feed by meal, or switch to the calendar and tap a day.</p>
+          <p class="muted">Entries are saved only in this browser.</p>
+          <button class="btn ghost" type="button" id="reset-demo">Reset demo data</button>
+        </div>
+
+        <div class="phone">
+          <div class="phone-screen">
+            <header class="app-bar">
+              <span class="app-title">Plate Diary</span>
+              <span class="app-count" id="app-count"></span>
+            </header>
+
+            <div class="app-body">
+              <section class="view" id="view-feed" aria-label="Feed">
+                <div class="chips" id="chips" role="group" aria-label="Filter by meal"></div>
+                <div class="day-filter" id="day-filter" hidden>
+                  <span id="day-filter-label"></span>
+                  <button type="button" class="link-btn" id="day-filter-clear">Show all</button>
+                </div>
+                <ul class="feed" id="feed"></ul>
+                <p class="empty" id="feed-empty" hidden>No meals here yet. Tap <strong>Add</strong> to log one.</p>
+              </section>
+
+              <section class="view" id="view-calendar" aria-label="Calendar" hidden>
+                <div class="cal-head">
+                  <button type="button" class="icon-btn" id="cal-prev" aria-label="Previous month">‹</button>
+                  <h3 id="cal-title"></h3>
+                  <button type="button" class="icon-btn" id="cal-next" aria-label="Next month">›</button>
+                </div>
+                <div class="cal-weekdays" aria-hidden="true"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+                <div class="cal-grid" id="cal-grid"></div>
+              </section>
+
+              <section class="view" id="view-add" aria-label="Add meal" hidden>
+                <form id="add-form" class="add-form">
+                  <label class="photo-drop" id="photo-drop">
+                    <input type="file" accept="image/*" id="photo-input">
+                    <img id="photo-preview" alt="" hidden>
+                    <span id="photo-hint">📷 Tap to add a photo</span>
+                  </label>
+
+                  <label class="field">
+                    <span>Caption</span>
+                    <input type="text" id="caption" maxlength="80" placeholder="What did you eat?" required>
+                  </label>
+
+                  <div class="field">
+                    <span>Meal</span>
+                    <div class="meal-picker" id="meal-picker" role="radiogroup" aria-label="Meal"></div>
+                  </div>
+
+                  <div class="field">
+                    <span>Rating</span>
+                    <div class="star-picker" id="star-picker" role="radiogroup" aria-label="Rating"></div>
+                  </div>
+
+                  <label class="field">
+                    <span>Date</span>
+                    <input type="date" id="date" required>
+                  </label>
+
+                  <p class="form-error" id="form-error" hidden></p>
+                  <button class="btn full" type="submit">Save meal</button>
+                </form>
+              </section>
+            </div>
+
+            <nav class="tab-bar" aria-label="App">
+              <button type="button" data-view="feed" class="active"><span aria-hidden="true">🍽️</span>Feed</button>
+              <button type="button" data-view="add" class="add-tab"><span aria-hidden="true">＋</span>Add</button>
+              <button type="button" data-view="calendar"><span aria-hidden="true">📅</span>Calendar</button>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">Plate Diary is a concept project. Made with HTML, CSS and a little JavaScript.</div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
