@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Plate Diary</title>
-  <meta name="description" content="Designing a food photo diary app: problem, users, features, flow, style guide and a working prototype.">
+  <meta name="description" content="Designing a food photo diary app: problem, goals, features, flow, style guide and a working prototype.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
       <a class="brand" href="#top">🍽️ Plate Diary</a>
       <nav aria-label="Sections">
         <a href="#problem">Problem</a>
-        <a href="#users">Users</a>
+        <a href="#goals">Goals</a>
         <a href="#features">Features</a>
         <a href="#flow">Flow</a>
         <a href="#style">Style</a>
@@ -52,28 +52,25 @@
       </div>
     </section>
 
-    <section id="users" class="section alt">
+    <section id="goals" class="section alt">
       <div class="wrap">
-        <p class="eyebrow">02 · Who it's for</p>
-        <h2>Three people we designed around</h2>
+        <p class="eyebrow">02 · What people want</p>
+        <h2>Three main end goals</h2>
         <div class="grid three">
-          <article class="card persona">
-            <div class="avatar" aria-hidden="true">👩‍🍳</div>
-            <h3>Maya, home cook</h3>
-            <p><span class="label">Goal</span> Keep track of recipes she's tried and how they turned out.</p>
-            <p><span class="label">Pain</span> Forgets which version of a dish worked best.</p>
+          <article class="card goal">
+            <div class="avatar" aria-hidden="true">🧘</div>
+            <h3>Mindful habits</h3>
+            <p>See when, what and how you eat on a visual timeline, so triggers and habits stand out without weighing or counting anything.</p>
           </article>
-          <article class="card persona">
-            <div class="avatar" aria-hidden="true">🏃</div>
-            <h3>Leo, health tracker</h3>
-            <p><span class="label">Goal</span> Notice eating patterns without counting calories.</p>
-            <p><span class="label">Pain</span> Nutrition apps feel like homework.</p>
+          <article class="card goal">
+            <div class="avatar" aria-hidden="true">📝</div>
+            <h3>Symptoms, mood &amp; context</h3>
+            <p>Note who you ate with, where, and how you felt, slept or stressed, to connect meals with discomfort, sensitivities or emotional eating.</p>
           </article>
-          <article class="card persona">
-            <div class="avatar" aria-hidden="true">✈️</div>
-            <h3>Priya, foodie traveler</h3>
-            <p><span class="label">Goal</span> Remember the best meals from every trip.</p>
-            <p><span class="label">Pain</span> Can't recall where that great noodle bowl was.</p>
+          <article class="card goal">
+            <div class="avatar" aria-hidden="true">📖</div>
+            <h3>Memories &amp; keepsakes</h3>
+            <p>A guilt-free diary of favorite dishes, new restaurants and shared meals: more scrapbook than diet log.</p>
           </article>
         </div>
       </div>
@@ -85,10 +82,10 @@
         <h2>Small, focused, fast</h2>
         <div class="grid three">
           <article class="card feature"><span class="icon" aria-hidden="true">📸</span><h3>Snap &amp; caption</h3><p>One photo and one line of text. Everything else is optional.</p></article>
-          <article class="card feature"><span class="icon" aria-hidden="true">🏷️</span><h3>Meal tags</h3><p>Breakfast, lunch, dinner or snack, picked with a single tap.</p></article>
+          <article class="card feature"><span class="icon" aria-hidden="true">🏷️</span><h3>Meal tags</h3><p>Breakfast, lunch, dinner or snack in one tap, then filter the feed by any of them.</p></article>
+          <article class="card feature"><span class="icon" aria-hidden="true">🧭</span><h3>Optional context</h3><p>Mood, company, place and how you felt after, one tap each, tucked away until you want it.</p></article>
           <article class="card feature"><span class="icon" aria-hidden="true">⭐</span><h3>Quick rating</h3><p>Five stars to remember how much you loved it.</p></article>
           <article class="card feature"><span class="icon" aria-hidden="true">📅</span><h3>Calendar view</h3><p>See your month as a grid of plates and spot patterns at a glance.</p></article>
-          <article class="card feature"><span class="icon" aria-hidden="true">🔎</span><h3>Filter by tag</h3><p>Jump straight to every dinner, or every snack, in one tap.</p></article>
           <article class="card feature"><span class="icon" aria-hidden="true">🔒</span><h3>Private by default</h3><p>Your diary stays on your device. No feed, no followers, no pressure.</p></article>
         </div>
       </div>
@@ -101,7 +98,7 @@
         <ol class="flow">
           <li><span class="step">1</span>Open the app</li>
           <li><span class="step">2</span>Snap or upload a photo</li>
-          <li><span class="step">3</span>Add a caption &amp; tag</li>
+          <li><span class="step">3</span>Add a caption, tag &amp; optional context</li>
           <li><span class="step">4</span>Save</li>
           <li><span class="step">5</span>Browse feed or calendar</li>
         </ol>
@@ -206,6 +203,11 @@
                     <span>Rating</span>
                     <div class="star-picker" id="star-picker" role="radiogroup" aria-label="Rating"></div>
                   </div>
+
+                  <details class="context" id="context">
+                    <summary>Add context <span>optional</span></summary>
+                    <div class="context-pickers" id="context-pickers"></div>
+                  </details>
 
                   <label class="field">
                     <span>Date</span>

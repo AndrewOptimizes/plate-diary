@@ -1,6 +1,13 @@
 (() => {
   const STORAGE_KEY = "plate-diary-entries";
   const MEALS = ["Breakfast", "Lunch", "Dinner", "Snack"];
+  // Optional context groups; each entry stores at most one option per key.
+  const CONTEXT = [
+    { key: "mood", label: "Mood", options: ["😊 Good", "😐 Okay", "😣 Stressed", "😴 Tired"] },
+    { key: "with", label: "Who with", options: ["Alone", "Family", "Friends", "Coworkers"] },
+    { key: "where", label: "Where", options: ["Home", "Work", "Out", "On the go"] },
+    { key: "after", label: "Felt after", options: ["👍 Fine", "🎈 Bloated", "🤢 Uneasy", "⚡ Energized"] },
+  ];
   const MAX_PHOTO_SIZE = 600;
 
   const $ = (id) => document.getElementById(id);
@@ -19,8 +26,10 @@
     new Date(iso + "T00:00").toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
 
   const sampleEntries = () => [
-    { id: "s1", date: daysAgo(0), caption: "Avocado toast with chili flakes", meal: "Breakfast", rating: 4, emoji: "🥑", hue: 95 },
-    { id: "s2", date: daysAgo(1), caption: "Spicy miso ramen downtown", meal: "Dinner", rating: 5, emoji: "🍜", hue: 20 },
+    { id: "s1", date: daysAgo(0), caption: "Avocado toast with chili flakes", meal: "Breakfast", rating: 4, emoji: "🥑", hue: 95,
+      context: { mood: "😴 Tired", where: "Home", after: "⚡ Energized" } },
+    { id: "s2", date: daysAgo(1), caption: "Spicy miso ramen downtown", meal: "Dinner", rating: 5, emoji: "🍜", hue: 20,
+      context: { mood: "😊 Good", with: "Friends", where: "Out" } },
     { id: "s3", date: daysAgo(3), caption: "Grandma's apple cake", meal: "Snack", rating: 5, emoji: "🍰", hue: 40 },
   ];
 
@@ -48,7 +57,7 @@
     mealFilter: "All",
     dayFilter: null,
     calMonth: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-    draft: { photo: null, meal: "Lunch", rating: 4 },
+    draft: { photo: null, meal: "Lunch", rating: 4, context: {} },
   };
 
   const el = (tag, props = {}, children = []) => {
@@ -132,17 +141,20 @@
 
     const stars = "★".repeat(entry.rating) + "☆".repeat(5 - entry.rating);
 
-    return el("li", { className: "entry" }, [
-      photo,
-      el("div", { className: "entry-body" }, [
-        el("div", { className: "entry-top" }, [el("p", { className: "entry-caption", textContent: entry.caption }), del]),
-        el("div", { className: "entry-meta" }, [
-          el("span", { className: "tag", textContent: entry.meal }),
-          el("span", { className: "entry-stars", textContent: stars }),
-          el("span", { textContent: formatDate(entry.date) }),
-        ]),
+    const body = el("div", { className: "entry-body" }, [
+      el("div", { className: "entry-top" }, [el("p", { className: "entry-caption", textContent: entry.caption }), del]),
+      el("div", { className: "entry-meta" }, [
+        el("span", { className: "tag", textContent: entry.meal }),
+        el("span", { className: "entry-stars", textContent: stars }),
+        el("span", { textContent: formatDate(entry.date) }),
       ]),
     ]);
+
+    // Entries saved before context existed have no `context` field.
+    const context = CONTEXT.map((g) => entry.context?.[g.key]).filter(Boolean);
+    if (context.length) body.append(el("p", { className: "entry-context", textContent: context.join(" · ") }));
+
+    return el("li", { className: "entry" }, [photo, body]);
   }
 
   function renderCalendar() {
@@ -220,6 +232,28 @@
         return b;
       })
     );
+
+    // Every context group is optional: tapping the selected chip clears it.
+    $("context-pickers").replaceChildren(
+      ...CONTEXT.map((group) =>
+        el("div", { className: "field" }, [
+          el("span", { textContent: group.label }),
+          el("div", { className: "meal-picker" },
+            group.options.map((option) => {
+              const selected = state.draft.context[group.key] === option;
+              const b = el("button", { type: "button", className: "chip", textContent: option });
+              b.setAttribute("aria-pressed", String(selected));
+              b.addEventListener("click", () => {
+                if (selected) delete state.draft.context[group.key];
+                else state.draft.context[group.key] = option;
+                renderPickers();
+              });
+              return b;
+            })
+          ),
+        ])
+      )
+    );
   }
 
   // Downscale the chosen image so entries stay small enough for localStorage.
@@ -246,7 +280,8 @@
 
   function resetForm() {
     $("add-form").reset();
-    state.draft = { photo: null, meal: "Lunch", rating: 4 };
+    state.draft = { photo: null, meal: "Lunch", rating: 4, context: {} };
+    $("context").open = false;
     $("photo-preview").hidden = true;
     $("photo-preview").removeAttribute("src");
     $("photo-hint").hidden = false;
@@ -286,6 +321,7 @@
       meal: state.draft.meal,
       rating: state.draft.rating,
       photo: state.draft.photo,
+      context: { ...state.draft.context },
       emoji: "🍽️",
       hue: Math.floor(Math.random() * 60),
     };
