@@ -177,7 +177,7 @@ code { font-size: 0.8em; color: var(--muted); }
 }
 .card p:last-child { margin-bottom: 0; }
 
-.persona .avatar {
+.goal .avatar {
   width: 56px; height: 56px;
   display: grid; place-items: center;
   font-size: 1.8rem;
@@ -465,6 +465,11 @@ code { font-size: 0.8em; color: var(--muted); }
 }
 .star-picker button.on { color: var(--butter); }
 .form-error { color: var(--accent); font-size: 0.82rem; margin: 0; }
+.context summary { font-size: 0.8rem; font-weight: 600; color: var(--muted); cursor: pointer; }
+.context summary span { font-weight: 400; opacity: 0.75; margin-left: 4px; }
+.context-pickers { display: grid; gap: 12px; padding-top: 12px; }
+
+.entry-context { margin: 6px 0 0; font-size: 0.75rem; color: var(--muted); }
 
 /* Footer */
 .site-footer { padding: 32px 0; font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--line); }
